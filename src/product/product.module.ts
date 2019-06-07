@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
-
+import {MongooseModule} from '@nestjs/mongoose';
+import { ProductSchema } from './schemas/product.schema';
 @Module({
-    imports : [],
+    imports : [MongooseModule.forFeature([
+        //defines como se llamara un squema en la bbdd
+        {name : 'Product' , schema : ProductSchema}
+    ])],
     controllers : [ProductController],
     providers : [ProductService]
 })
